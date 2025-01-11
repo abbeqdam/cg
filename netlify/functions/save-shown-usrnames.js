@@ -4,7 +4,7 @@ exports.handler = async function (event, context) {
   try {
     const shownUsrnames = JSON.parse(event.body);
     const data = JSON.stringify(shownUsrnames);
-    fs.writeFileSync('shown_usrnames.json', data, 'utf8');
+    fs.writeFileSync('shown_usrnames.json', "test", 'utf8');
     return {
       statusCode: 200,
       body: JSON.stringify({ message: 'Shown usernames saved successfully' }),
