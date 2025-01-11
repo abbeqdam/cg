@@ -1,0 +1,87 @@
+/* Add your CSS styling here */
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  #word-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  #word-container a {
+    color: #007bff; 
+    text-decoration: none;
+    display: block; 
+    margin-top: 20px;
+    font-family: 'Arial', sans-serif; 
+    font-weight: bold; 
+    font-size: 1.2rem;
+  }
+  
+  /* Style for the hidden password */
+  #word-container .password {
+    user-select: none; 
+    -webkit-user-select: none; 
+  }
+  
+  #word-container .password::before {
+    content: "********"; 
+  }
+  
+  /* Show the password on click and hold */
+  #word-container .password:active::before {
+    content: "12345678"; 
+  }
+  
+  #word-container .input-group {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    gap: 10px; 
+    margin-bottom: 15px; 
+  }
+  
+  #word-container label {
+    font-family: 'Arial', sans-serif; 
+    font-size: 1.2rem;
+    font-weight: bold;
+    white-space: nowrap; 
+    margin-right: 10px; 
+  }
+  
+  #word-container p {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    margin: 0; 
+  }
+  
+  #word-container button {
+    font-size: 1rem;
+    padding: 5px 10px; 
+  }
+  
+  #show-word-button {
+    background-color: #007bff; 
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+  }
+  
+  #show-word-button i {
+    font-size: 1.5rem; 
+  }
