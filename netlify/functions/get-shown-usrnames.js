@@ -1,35 +1,34 @@
-const { Firestore } = require('@google-cloud/firestore');
+// netlify/functions/get-shown-usrnames.js
 
-// Initialize Firestore with your project ID
-const firestore = new Firestore({
-  projectId: 'intake-447511', // Replace with your actual project ID
-});
+const fetch = require('node-fetch');
+
+const API_KEY = process.env.JSONBIN_API_KEY; // Get the API key from environment variables
+const BIN_ID = process.env.JSONBIN_BIN_ID;
 
 exports.handler = async function (event, context) {
   try {
-    // Fetch the shown usernames from Firestore
-    const docRef = firestore.collection('shown-usrnames').doc('data');
-    const doc = await docRef.get();
+    const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+      headers: {
+        'X-Master-Key': API_KEY,
+      },
+    });
 
-    // If the document exists, return the shownUsrnames array
-    if (doc.exists) {
-      const shownUsrnames = doc.data().words;
-      return {
-        statusCode: 200,
-        body: JSON.stringify(shownUsrnames),
-      };
-    } else {
-      // If the document doesn't exist, return an empty array
-      return {
-        statusCode: 200,
-        body: JSON.stringify([]),
-      };
+    if (!response.ok) {
+      throw new Error(`JSONbin.io request failed with status ${response.status}`);
     }
+
+    const data = await response.json();
+    const shownUsrnames = data.record.words || [];
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify(shownUsrnames),
+    };
   } catch (error) {
     console.error('Error fetching shown usernames:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({error: 'Failed to fetch shown usernames'}),
+      body: JSON.stringify({ error: 'Failed to fetch shown usernames' }),
     };
   }
 };

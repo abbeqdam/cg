@@ -1,3 +1,5 @@
+// script.js
+
 let shownUsrnames = [];
 
 // Load shown usernames from the server
@@ -42,7 +44,7 @@ function showWord() {
 
       // Set the password text content
       const passwordElement = document.querySelector('.password');
-      passwordElement.textContent = "12345678";
+      passwordElement.textContent = "";
 
       // Add the username to shownUsrnames
       shownUsrnames.push(selectedUsrname);
