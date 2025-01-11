@@ -42,7 +42,7 @@ function showWord() {
 
       // Set the password text content
       const passwordElement = document.querySelector('.password');
-      passwordElement.textContent = "12345678";
+      passwordElement.textContent = "";
 
       // Add the username to shownUsrnames
       shownUsrnames.push(selectedUsrname);
