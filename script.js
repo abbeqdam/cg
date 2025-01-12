@@ -31,7 +31,8 @@ function showWord() {
 
       // If all usernames have been shown, display "No more usernames"
       if (availableUsrnames.length === 0) {
-        document.getElementById("word").textContent = "No more usernames!";
+        document.getElementById("word").textContent = "No usernames available!";
+        document.getElementById("password").textContent = "No  passwords available!";
         return; // Exit the function
       }
 
