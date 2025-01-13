@@ -21,7 +21,6 @@ fetch('/.netlify/functions/get-shown-usrnames')
 
 function showWord() {
   if (credentialsGenerated) {
-    // Display the message without the #word-container
     const messageElement = document.createElement('p');
     messageElement.textContent = "You have already generated all credentials.";
     messageElement.style.fontFamily = 'Arial, sans-serif';
@@ -48,7 +47,6 @@ function showWord() {
       const availableUsrnames = usrnames.filter(usrname => !shownUsrnames.includes(usrname.name));
 
       if (availableUsrnames.length === 0) {
-        // Display the message without the #word-container
         const messageElement = document.createElement('p');
         messageElement.textContent = "No more usernames!";
         messageElement.style.fontFamily = 'Arial, sans-serif';
@@ -66,7 +64,18 @@ function showWord() {
       document.getElementById("usrname").textContent = selectedUsrname.name;
 
       const passwordElement = document.querySelector('.password');
-      passwordElement.textContent = selectedUsrname.password;
+
+      // Initially set the password to asterisks
+      passwordElement.textContent = "********";
+
+      // Add event listeners to show/hide the actual password on mousedown/mouseup
+      passwordElement.addEventListener('mousedown', () => {
+        passwordElement.textContent = selectedUsrname.password;
+      });
+
+      passwordElement.addEventListener('mouseup', () => {
+        passwordElement.textContent = "********";
+      });
 
       shownUsrnames.push(selectedUsrname.name);
 
