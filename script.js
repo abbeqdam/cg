@@ -60,7 +60,18 @@ function showWord() {
       document.getElementById("usrname").textContent = selectedUsrname.name;
 
       const passwordElement = document.querySelector('.password');
-      passwordElement.textContent = selectedUsrname.password; // Set the password from the XML
+
+      // Set the password text content (initially hidden with asterisks)
+      passwordElement.textContent = "********";
+
+      // Add an event listener to show the actual password on mousedown and hide it on mouseup
+      passwordElement.addEventListener('mousedown', () => {
+        passwordElement.textContent = selectedUsrname.password; // Show actual password
+      });
+
+      passwordElement.addEventListener('mouseup', () => {
+        passwordElement.textContent = "********"; // Hide password with asterisks
+      });
 
       shownUsrnames.push(selectedUsrname.name);
 
@@ -96,7 +107,7 @@ function copyUsername() {
 }
 
 function copyPassword() {
-  const password = document.querySelector('.password').textContent; // Get the password from the element
+  const password = document.querySelector('.password').textContent;
   navigator.clipboard.writeText(password);
 }
 
