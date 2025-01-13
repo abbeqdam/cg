@@ -21,12 +21,17 @@ fetch('/.netlify/functions/get-shown-usrnames')
 
 function showWord() {
   if (credentialsGenerated) {
+    // Display the message without the #word-container
     const messageElement = document.createElement('p');
     messageElement.textContent = "You have already generated all credentials.";
     messageElement.style.fontFamily = 'Arial, sans-serif';
     messageElement.style.fontSize = '1.2rem';
     messageElement.style.fontWeight = 'bold';
     document.body.appendChild(messageElement);
+
+    // Hide the "Generate Credentials" button
+    document.getElementById('show-word-button').style.display = 'none'; 
+
     return;
   }
 
@@ -47,12 +52,16 @@ function showWord() {
       const availableUsrnames = usrnames.filter(usrname => !shownUsrnames.includes(usrname.name));
 
       if (availableUsrnames.length === 0) {
+        // Display the message without the #word-container
         const messageElement = document.createElement('p');
         messageElement.textContent = "No more usernames!";
         messageElement.style.fontFamily = 'Arial, sans-serif';
         messageElement.style.fontSize = '1.2rem';
         messageElement.style.fontWeight = 'bold';
         document.body.appendChild(messageElement);
+
+        // Hide the "Generate Credentials" button
+        document.getElementById('show-word-button').style.display = 'none'; 
 
         credentialsGenerated = true;
         return;
