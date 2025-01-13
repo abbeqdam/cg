@@ -21,8 +21,13 @@ fetch('/.netlify/functions/get-shown-usrnames')
 
 function showWord() {
   if (credentialsGenerated) {
-    document.getElementById("usrname").textContent = "You have already generated all credentials.";
-    document.getElementById('word-container').style.display = 'block';
+    // Display the message without the #word-container
+    const messageElement = document.createElement('p');
+    messageElement.textContent = "You have already generated all credentials.";
+    messageElement.style.fontFamily = 'Arial, sans-serif';
+    messageElement.style.fontSize = '1.2rem';
+    messageElement.style.fontWeight = 'bold';
+    document.body.appendChild(messageElement);
     return;
   }
 
@@ -32,7 +37,6 @@ function showWord() {
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlString, "text/xml");
 
-      // Extract usernames and passwords
       const usrnameElements = xmlDoc.getElementsByTagName("usrname");
       const usrnames = [];
       for (let i = 0; i < usrnameElements.length; i++) {
@@ -44,13 +48,15 @@ function showWord() {
       const availableUsrnames = usrnames.filter(usrname => !shownUsrnames.includes(usrname.name));
 
       if (availableUsrnames.length === 0) {
-        document.getElementById("usrname").textContent = "No more usernames!";
+        // Display the message without the #word-container
+        const messageElement = document.createElement('p');
+        messageElement.textContent = "No more usernames!";
+        messageElement.style.fontFamily = 'Arial, sans-serif';
+        messageElement.style.fontSize = '1.2rem';
+        messageElement.style.fontWeight = 'bold';
+        document.body.appendChild(messageElement);
+
         credentialsGenerated = true;
-
-        // Set the password to blank
-        const passwordElement = document.querySelector('.password');
-        passwordElement.textContent = "";
-
         return;
       }
 
@@ -60,18 +66,7 @@ function showWord() {
       document.getElementById("usrname").textContent = selectedUsrname.name;
 
       const passwordElement = document.querySelector('.password');
-
-      // Set the password text content (initially hidden with asterisks)
-      passwordElement.textContent = "********";
-
-      // Add an event listener to show the actual password on mousedown and hide it on mouseup
-      passwordElement.addEventListener('mousedown', () => {
-        passwordElement.textContent = selectedUsrname.password; // Show actual password
-      });
-
-      passwordElement.addEventListener('mouseup', () => {
-        passwordElement.textContent = "********"; // Hide password with asterisks
-      });
+      passwordElement.textContent = selectedUsrname.password;
 
       shownUsrnames.push(selectedUsrname.name);
 

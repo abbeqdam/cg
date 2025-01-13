@@ -31,13 +31,13 @@ body {
   -webkit-user-select: none;
 }
 
-#word-container .password::before {
+/* #word-container .password::before {
   content: "********";
 }
 
 #word-container .password:active::before {
   content: "12345678";
-}
+} */
 
 #word-container .input-group {
   display: flex;
