@@ -1,5 +1,3 @@
-// script.js
-
 let shownUsrnames = [];
 let credentialsGenerated = false;
 
@@ -22,47 +20,50 @@ fetch('/.netlify/functions/get-shown-usrnames')
   });
 
 function showWord() {
-    // Fetch usernames from XML file
-/*   if (credentialsGenerated) {
-    document.getElementById("usrname").textContent = "You have already generated all credentials."; // Changed "word" to "usrname"
+  if (credentialsGenerated) {
+    document.getElementById("usrname").textContent = "You have already generated all credentials.";
     document.getElementById('word-container').style.display = 'block';
     return;
-  } */
+  }
 
   fetch('usrname.xml')
     .then(response => response.text())
     .then(xmlString => {
       const parser = new DOMParser();
       const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-      const usrnames = Array.from(xmlDoc.getElementsByTagName("usrname")).map(usrname => usrname.textContent);
 
-      // Filter out shown usernames
-      const availableUsrnames = usrnames.filter(usrname => !shownUsrnames.includes(usrname));
+      // Extract usernames and passwords
+      const usrnameElements = xmlDoc.getElementsByTagName("usrname");
+      const usrnames = [];
+      for (let i = 0; i < usrnameElements.length; i++) {
+        const usrname = usrnameElements[i].getElementsByTagName("name")[0].textContent;
+        const password = usrnameElements[i].getElementsByTagName("password")[0].textContent;
+        usrnames.push({ name: usrname, password: password });
+      }
 
-      // If all usernames have been shown, display "No more usernames"      
+      const availableUsrnames = usrnames.filter(usrname => !shownUsrnames.includes(usrname.name));
+
       if (availableUsrnames.length === 0) {
         document.getElementById("usrname").textContent = "No more usernames!";
+        credentialsGenerated = true;
+
+        // Set the password to blank
         const passwordElement = document.querySelector('.password');
-        passwordElement.textContent = ""
-        //credentialsGenerated = true;
+        passwordElement.textContent = "";
+
         return;
       }
 
-            // Select a random username
       const randomIndex = Math.floor(Math.random() * availableUsrnames.length);
       const selectedUsrname = availableUsrnames[randomIndex];
 
-      // Display the username
-      document.getElementById("usrname").textContent = selectedUsrname; // Changed "word" to "usrname"
+      document.getElementById("usrname").textContent = selectedUsrname.name;
 
-            // Set the password text content
       const passwordElement = document.querySelector('.password');
-      passwordElement.textContent = "";
+      passwordElement.textContent = selectedUsrname.password; // Set the password from the XML
 
-      // Add the username to shownUsrnames
-      shownUsrnames.push(selectedUsrname);
+      shownUsrnames.push(selectedUsrname.name);
 
-            // Send the updated shownUsrnames to the server
       fetch('/.netlify/functions/save-shown-usrnames', {
         method: 'POST',
         headers: {
@@ -90,12 +91,13 @@ function showWord() {
 }
 
 function copyUsername() {
-  const username = document.getElementById("usrname").textContent; // Changed "word" to "usrname"
+  const username = document.getElementById("usrname").textContent;
   navigator.clipboard.writeText(username);
 }
 
 function copyPassword() {
-  navigator.clipboard.writeText("12345678");
+  const password = document.querySelector('.password').textContent; // Get the password from the element
+  navigator.clipboard.writeText(password);
 }
 
 document.getElementById('show-word-button').addEventListener('click', showWord);

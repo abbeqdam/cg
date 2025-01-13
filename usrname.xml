@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <usrnames>
-  <usrname>james</usrname>
-  <usrname>abbott</usrname>
-  <usrname>cherry</usrname>
- </usrnames>
+  <usrname>
+    <name>apple</name>
+    <password>password123</password> 
+  </usrname>
+  <usrname>
+    <name>banana</name>
+    <password>securepass</password>
+  </usrname>
+  <usrname>
+    <name>cherry</name>
+    <password>mysecret</password>
+  </usrname>
+  </usrnames>
