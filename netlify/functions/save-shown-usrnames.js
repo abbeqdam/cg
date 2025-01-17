@@ -27,7 +27,7 @@ exports.handler = async function (event, context) {
     const allUsrnames = Array.from(new Set([...existingData, ...shownUsrnames]));
 
     // Check if all usernames have been shown
-    if (allUsrnames.length === 3) { // Replace 3 with the actual number of usernames in your XML file
+    if (allUsrnames.length === 1031) { // Replace 3 with the actual number of usernames in your XML file
       return {
         statusCode: 200,
         body: JSON.stringify({ message: 'All usernames have been shown' }),

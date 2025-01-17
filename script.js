@@ -11,7 +11,7 @@ fetch('/.netlify/functions/get-shown-usrnames')
   })
   .then(data => {
     shownUsrnames = data;
-    if (shownUsrnames.length === 3) {
+    if (shownUsrnames.length === 1031) {
       credentialsGenerated = true;
     }
   })
@@ -101,7 +101,7 @@ function showWord() {
         }
         console.log('Shown usernames saved successfully');
 
-        if (shownUsrnames.length === 3) {
+        if (shownUsrnames.length === 1031) {
           credentialsGenerated = true;
         }
       })
