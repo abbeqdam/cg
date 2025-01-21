@@ -121,9 +121,7 @@ function copyUsername() {
 }
 
 function copyPassword() {
-  const passwordsElement = document.querySelector('.password');
-  passwordsElement.textContent = selectedUsrname.password;
-    navigator.clipboard.writeText(passwordsElement);
+     navigator.clipboard.writeText("CoupaIntake@6789");
 }
 /* function copyPassword() {
   const password = document.querySelector('.password').textContent;
