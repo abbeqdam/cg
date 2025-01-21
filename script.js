@@ -71,6 +71,7 @@ function showWord() {
       const selectedUsrname = availableUsrnames[randomIndex];
 
       document.getElementById("usrname").textContent = selectedUsrname.name;
+      document.getElementById("password").textContent = selectedUsrname.password;
 
       const passwordElement = document.querySelector('.password');
 
@@ -120,9 +121,9 @@ function copyUsername() {
 }
 
 function copyPassword() {
-  passwordElement.textContent = selectedUsrname.password;
-  //const password = document.querySelector('.password').textContent;
-  navigator.clipboard.writeText(passwordElement.textContent);
+  const passwordsElement = document.querySelector('.password');
+  const password = document.querySelector('.password').textContent;
+  navigator.clipboard.writeText(passwordsElement);
 }
 /* function copyPassword() {
   const password = document.querySelector('.password').textContent;
