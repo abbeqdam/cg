@@ -1,5 +1,6 @@
 let shownUsrnames = [];
 let credentialsGenerated = false;
+let globalText = "";
 
 // Load shown usernames from the server
 fetch('/.netlify/functions/get-shown-usrnames')
@@ -75,10 +76,7 @@ function showWord() {
 
       const passwordElement = document.querySelector('.password');
 
-      //global var
-      passwordElement.textContent = selectedUsrname.password;
-      let globalText = passwordElement.textContent;
-
+      globalText=selectedUsrname.password;
 
       // Initially set the password to asterisks
       passwordElement.textContent = "********";
@@ -86,6 +84,7 @@ function showWord() {
       // Add event listeners to show/hide the actual password on mousedown/mouseup
       passwordElement.addEventListener('mousedown', () => {
         passwordElement.textContent = selectedUsrname.password;
+   
       });
 
       passwordElement.addEventListener('mouseup', () => {
@@ -126,7 +125,6 @@ function copyUsername() {
 }
 
 //let globalText = "CoupaIntake@6789"
-
   function copyPassword() {
   const password = document.querySelector('.password');
   navigator.clipboard.writeText(globalText);
