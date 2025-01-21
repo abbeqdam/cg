@@ -87,9 +87,9 @@ function showWord() {
    
       });
 
-      passwordElement.addEventListener('mouseup', () => {
+/*       passwordElement.addEventListener('mouseup', () => {
         passwordElement.textContent = "********";
-      }); 
+      }); */ 
 
       shownUsrnames.push(selectedUsrname.name);
 
