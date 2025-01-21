@@ -76,7 +76,7 @@ function showWord() {
       const passwordElement = document.querySelector('.password');
 
       // Initially set the password to asterisks
-      passwordElement.textContent = selectedUsrname.password;
+      passwordElement.textContent = "********";
 
       // Add event listeners to show/hide the actual password on mousedown/mouseup
       passwordElement.addEventListener('mousedown', () => {
@@ -121,9 +121,9 @@ function copyUsername() {
 }
 
 function copyPassword() {
-    //const passwords = document.querySelector('.password').textContent;
-    const passwords ="CoupaIntake@6789"
-  navigator.clipboard.writeText(passwords);
+  const passwordsElement = document.querySelector('.password');
+  passwordsElement.textContent = selectedUsrname.password;
+    navigator.clipboard.writeText(passwordsElement);
 }
 /* function copyPassword() {
   const password = document.querySelector('.password').textContent;
