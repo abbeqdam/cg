@@ -83,9 +83,9 @@ function showWord() {
         passwordElement.textContent = selectedUsrname.password;
       });
 
-     /*  passwordElement.addEventListener('mouseup', () => {
+      passwordElement.addEventListener('mouseup', () => {
         passwordElement.textContent = "********";
-      }); */
+      }); 
 
       shownUsrnames.push(selectedUsrname.name);
 
@@ -123,10 +123,10 @@ function copyUsername() {
 /* function copyPassword() {
   navigator.clipboard.writeText("CoupaIntake@6789");
 } */
-function copyPassword() {
-  passwordElement.textContent= selectedUsrname.password;
-  const password = document.querySelector('.password').textContent;
-  navigator.clipboard.writeText(password);
+let globalText = "CoupaIntake@6789"
+  function copyPassword() {
+  const password = document.querySelector('.password');
+  navigator.clipboard.writeText(globalText);
 } 
  /*  function copyPassword() {
     // Get the password element
