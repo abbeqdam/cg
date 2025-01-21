@@ -121,9 +121,9 @@ function copyUsername() {
 }
 
 function copyPassword() {
-  const passwordsElement = document.querySelector('.password');
-  const password = document.querySelector('.password').textContent;
-  navigator.clipboard.writeText(passwordsElement);
+  //const passwordsElement = document.querySelector('.password');
+  const passwordss = document.querySelector('.password').textContent;
+  navigator.clipboard.writeText(passwordss);
 }
 /* function copyPassword() {
   const password = document.querySelector('.password').textContent;
