@@ -120,7 +120,7 @@ function copyUsername() {
 }
 
 function copyPassword() {
-  const password = document.querySelector('.password').textContent;
+  const password = document.querySelector('.password').selectedUsrname.password;
   navigator.clipboard.writeText(password);
 }
 
