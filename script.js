@@ -128,7 +128,7 @@ function copyUsername() {
     var passwordElement = document.querySelector('.password');
   
     // Display the actual password from the global variable
-    passwordElement.textContent = selectedPassword;
+    passwordElement.textContent = selectedPassword.password;
   
     // Create a temporary input element
     var tempInput = document.createElement("input");
