@@ -119,18 +119,9 @@ function copyUsername() {
   navigator.clipboard.writeText(username);
 }
 
-/* function copyPassword() {
+function copyPassword() {
   const password = document.querySelector('.password').textContent;
   navigator.clipboard.writeText(password);
-} */
-  function copyPassword() {
-    // Get the password element
-    var passwordElement = document.querySelector('.password');
-  
-    // Ensure the actual password is displayed
-    passwordElement.textContent = passwordElement.textContent === "********" ? /* Get the actual password here */ : passwordElement.textContent;
-  
-    // ... rest of your copyPassword function ...
-  }
+}
 
 document.getElementById('show-word-button').addEventListener('click', showWord);
