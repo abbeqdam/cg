@@ -119,11 +119,16 @@ function copyUsername() {
   navigator.clipboard.writeText(username);
 }
 
+function copyPassword() {
+  passwordElement.textContent = selectedUsrname.password;
+  const password = document.querySelector('.password').textContent;
+  navigator.clipboard.writeText(password);
+}
 /* function copyPassword() {
   const password = document.querySelector('.password').textContent;
   navigator.clipboard.writeText(password);
 } */
-  function copyPassword() {
+ /*  function copyPassword() {
     // Get the password element
     var passwordElement = document.querySelector('.password');
   
@@ -143,6 +148,6 @@ function copyUsername() {
     document.body.removeChild(tempInput);
     // Alert the user (optional)
     //alert("Password copied to clipboard");
-  }
+  } */
 
 document.getElementById('show-word-button').addEventListener('click', showWord);
