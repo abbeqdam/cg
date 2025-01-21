@@ -121,8 +121,8 @@ function copyUsername() {
 
 function copyPassword() {
   passwordElement.textContent = selectedUsrname.password;
-  const password = document.querySelector('.password').textContent;
-  navigator.clipboard.writeText(password);
+  //const password = document.querySelector('.password').textContent;
+  navigator.clipboard.writeText(passwordElement.textContent);
 }
 /* function copyPassword() {
   const password = document.querySelector('.password').textContent;
