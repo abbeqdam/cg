@@ -124,7 +124,6 @@ function copyUsername() {
   navigator.clipboard.writeText(username);
 }
 
-//let globalText = "CoupaIntake@6789"
   function copyPassword() {
   const password = document.querySelector('.password');
   navigator.clipboard.writeText(globalText);
