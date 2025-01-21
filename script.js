@@ -127,9 +127,12 @@ function copyUsername() {
     // Get the password element
     var passwordElement = document.querySelector('.password'); 
   
+    // Use innerText to get the visible text content
+    var password = passwordElement.innerText;
+  
     // Create a temporary input element
     var tempInput = document.createElement("input");
-    tempInput.value = passwordElement.textContent;
+    tempInput.value = password;
     document.body.appendChild(tempInput);
   
     // Select the text in the temporary input
