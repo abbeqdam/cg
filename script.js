@@ -75,6 +75,11 @@ function showWord() {
 
       const passwordElement = document.querySelector('.password');
 
+      //global var
+      passwordElement.textContent = selectedUsrname.password;
+      let globalText = passwordElement.textContent;
+
+
       // Initially set the password to asterisks
       passwordElement.textContent = "********";
 
@@ -121,8 +126,7 @@ function copyUsername() {
 }
 
 //let globalText = "CoupaIntake@6789"
-passwordElement.textContent = selectedUsrname.password;
-let globalText = passwordElement.textContent;
+
   function copyPassword() {
   const password = document.querySelector('.password');
   navigator.clipboard.writeText(globalText);
